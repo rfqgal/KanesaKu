@@ -41,7 +41,7 @@
           <p>Rapor Siswa</p>
         </div>
       </a>
-      <a href="./account/">
+      <a href="./accounts/">
         <div class="nav admin flex mb-12">
           <img src="../assets/img/admin/Buat Akun.svg" alt="Rapor">
           <p>Manajemen Akun</p>
