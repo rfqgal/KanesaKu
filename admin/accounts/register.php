@@ -61,7 +61,7 @@ if (isset($_POST['register'])) {
           <p>Rapor Siswa</p>
         </div>
       </a>
-      <a href="#">
+      <a href="./">
         <div class="nav admin active flex mb-12">
           <img src="../../assets/img/admin/Buat Akun.svg" alt="Rapor">
           <p>Manajemen Akun</p>
