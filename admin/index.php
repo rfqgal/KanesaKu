@@ -54,12 +54,13 @@
   </nav>
   <main>
     <header>
-      <h1>Dashboard</h1>
+      <h1>KanesaKu</h1>
       <div class="account">
 
       </div>
     </header>
-    <article class="shadow-2">
+    <article class="dashboard mt-32">
+      <h1>Selamat Datang, <?= $_SESSION['name'] ?>!</h1>
     </article>
   </main>
 </body>
