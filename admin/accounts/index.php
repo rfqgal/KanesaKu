@@ -86,7 +86,7 @@ require_once('../../config.php');
                   <img src="../../assets/img/Edit.svg" alt="Edit">
                 </button>
               </a>
-              <a href="./delete.php">
+              <a href="./delete.php?id=<?= $row['id'] ?>">
                 <button class="danger">
                   <img src="../../assets/img/Delete.svg" alt="Delete">
                 </button>
