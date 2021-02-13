@@ -14,7 +14,6 @@
         if (md5($_POST['password'] == $row['password'])) {
           $_SESSION['name'] = $row['name'];
           $_SESSION['level'] = $row['level'];
-
           if ($_SESSION['level'] == 'admin') {
             header('location:./admin/');
           }
@@ -43,7 +42,7 @@
   </div>
   <main class="flex-basis-40">
     <h1 class="saira" style="font-size: 36px;">Login</h1>
-    <form class="" action="" method="POST">
+    <form class="form-login" action="" method="POST">
       <p>ID</p>
       <input type="text" name="id" id="id">
       <p>Password</p>
