@@ -3,19 +3,7 @@ session_start();
 if ($_SESSION['level'] != "admin") {
   header('location:../../');
 }
-
-if (isset($_POST['register'])) {
-  $name = $_POST['name'];
-  $id = $_POST['id'];
-  $password = $_POST['password'];
-  $level = $_POST['level'];
-
-  if ($name != "" && $id != "" && $password != "" && $level != "") {
-    
-  } else {
-    echo "<script>alert('No null!');</script>";
-  }
-}
+require_once('../../config.php');
 ?>
 <html lang="en">
 
@@ -73,26 +61,42 @@ if (isset($_POST['register'])) {
       </div>
     </header>
     <article class="content shadow-2">
-      <form action="" method="post">
-        <h1>Form Register</h1>
-
-        <h2>Name</h2>
-        <input type="text" name="name" id="name">
-
-        <h2>ID</h2>
-        <input type="text" name="id" id="id">
-
-        <h2>Password</h2>
-        <input type="password" name="password" id="password">
-
-        <h2>Level</h2>
-        <select name="level" id="level">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-
-        <input type="submit" value="Register" name="register">
-      </form>
+      <div class="account-header">
+        <h1>Daftar Akun</h1>
+        <a href="./register.php">Tambahkan Akun</a>
+      </div>
+      <table class="account">
+        <tr>
+          <th class="index">ID</th>
+          <th>Nama</th>
+          <th class="level">Level</th>
+          <th class="action">Action</th>
+        </tr>
+        <?php
+        $read = mysqli_query($conn, "SELECT * FROM user");
+        while ($row = mysqli_fetch_assoc($read)) {
+        ?>
+          <tr>
+            <td><?= $row['id'] ?></td>
+            <td><?= $row['name'] ?></td>
+            <td><?= $row['level'] ?></td>
+            <td class="action">
+              <a href="update.php">
+                <button class="warning">
+                  <img src="../../assets/img/Edit.svg" alt="Edit">
+                </button>
+              </a>
+              <a href="./delete.php">
+                <button class="danger">
+                  <img src="../../assets/img/Delete.svg" alt="Delete">
+                </button>
+              </a>
+            </td>
+          </tr>
+        <?php
+        }
+        ?>
+      </table>
     </article>
   </main>
 </body>
