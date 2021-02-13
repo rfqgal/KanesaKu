@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once('../../config.php');
+
 if ($_SESSION['level'] != "admin") {
   header('location:../../');
 }
@@ -7,11 +9,12 @@ if ($_SESSION['level'] != "admin") {
 if (isset($_POST['register'])) {
   $name = $_POST['name'];
   $id = $_POST['id'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
   $level = $_POST['level'];
 
-  if ($name != "" && $id != "" && $password != "" && $level != "") {
-    
+  if ($name != "" && $id != "" && $password != "d41d8cd98f00b204e9800998ecf8427e" && $level != "") {
+    $register = "INSERT INTO user VALUES ('$id', '$password', '$name', '$level')";
+    mysqli_query($conn, $register);
   } else {
     echo "<script>alert('No null!');</script>";
   }
@@ -67,30 +70,32 @@ if (isset($_POST['register'])) {
   </nav>
   <main>
     <header>
-      <h1>Buat Akun</h1>
+      <h1 class="t-center mt-32">Buat Akun</h1>
       <div class="account">
 
       </div>
     </header>
-    <article class="content shadow-2">
-      <form action="" method="post">
-        <h1>Form Register</h1>
-
-        <h2>Name</h2>
-        <input type="text" name="name" id="name">
-
-        <h2>ID</h2>
-        <input type="text" name="id" id="id">
-
-        <h2>Password</h2>
-        <input type="password" name="password" id="password">
-
-        <h2>Level</h2>
-        <select name="level" id="level">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-
+    <article class="content mt-32 center shadow-2">
+      <form action="" method="POST">
+        <h1 class="t-center">Form Register</h1>
+        <div class="">
+          <div class="col block">
+            <label class="mt-32" for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <span>*Nama lengkap pemilik akun beserta gelar</span>
+            <label class="mt-32" for="id">ID</label>
+            <input type="text" name="id" id="id">
+            <span>*Username untuk login akun Anda</span>
+            <label class="mt-32" for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <span>*Buat dengan kombinasi huruf angka</span>
+            <label class="mt-32" for="level">Level</label>
+            <select name="level" id="level">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>  
+        </div>
         <input type="submit" value="Register" name="register">
       </form>
     </article>
