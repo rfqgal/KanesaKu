@@ -12,12 +12,16 @@ if (isset($_POST['register'])) {
   $password = md5($_POST['password']);
   $level = $_POST['level'];
 
-  if ($name != "" && $id != "" && $password != "d41d8cd98f00b204e9800998ecf8427e" && $level != "") {
-    $register = "INSERT INTO user VALUES ('$id', '$password', '$name', '$level')";
-    if (mysqli_query($conn, $register)) {
-      echo "<script>alert('Account Registered!');</script>";
+  if ($name != "" && $id != "" && $password != "d41d8cd98f00b204e9800998ecf8427e") {
+    if ($level == "user" || $level == "admin") {
+      $register = "INSERT INTO user VALUES ('$id', '$password', '$name', '$level')";
+      if (mysqli_query($conn, $register)) {
+        echo "<script>alert('Account Registered!');</script>";
+      } else {
+        echo "<script>alert('Account Not Registered!');</script>";
+      }
     } else {
-      echo "<script>alert('Account Not Registered!');</script>";
+      echo "<script>alert('Level must be Admin or User!');</script>";
     }
   } else {
     echo "<script>alert('No null!');</script>";
